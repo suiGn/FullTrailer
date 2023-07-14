@@ -1,0 +1,22 @@
+{
+  "name": "fulltrailer",
+  "version": "2.0.3",
+  "description": "Logistics",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suiGn/fullTrailer.git"
+  },
+  "keywords": [
+    "Logistics"
+  ],
+  "author": "suiGn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suiGn/fullTrailer/issues"
+  },
+  "homepage": "https://github.com/suiGn/fullTrailer#readme"
+}

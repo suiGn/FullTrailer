@@ -1,22 +1,28 @@
 {
-  "name": "fulltrailer",
-  "version": "2.0.3",
-  "description": "Logistics",
-  "main": "index.js",
+  "name": "webapp",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "test"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suiGn/fullTrailer.git"
-  },
-  "keywords": [
-    "Logistics"
-  ],
-  "author": "suiGn",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/suiGn/fullTrailer/issues"
-  },
-  "homepage": "https://github.com/suiGn/fullTrailer#readme"
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.7",
+    "@mui/material": "^5.14.7",
+    "autoprefixer": "10.4.15",
+    "axios": "^1.5.0",
+    "eslint": "8.48.0",
+    "eslint-config-next": "13.4.19",
+    "next": "13.4.19",
+    "postcss": "8.4.29",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "swr": "^2.2.2",
+    "tailwindcss": "3.3.3"
+  }
 }

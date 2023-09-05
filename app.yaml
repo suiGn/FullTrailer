@@ -1,3 +1,0 @@
-runtime: nodejs18
-entrypoint: npm start
-instance_class: F2

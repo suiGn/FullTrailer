@@ -14,11 +14,21 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
 import StarIcon from '@mui/icons-material/Star';
+import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import SettingsIcon from '@mui/icons-material/Settings';
+import RvHookupIcon from '@mui/icons-material/RvHookup';
+import CommitIcon from '@mui/icons-material/Commit';
+import DirectionsBusFilledIcon from '@mui/icons-material/DirectionsBusFilled';
 import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import ThemeRegistry from '@/app/components/ThemeRegistry/ThemeRegistry';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import { Alert } from '@mui/material';
 
 export const metadata = {
@@ -29,7 +39,13 @@ export const metadata = {
 const DRAWER_WIDTH = 240;
 
 const LINKS = [
-  { text: 'Barrido', href: '/', icon: SupportIcon },
+  { text: 'Home', href: '/', icon: HomeIcon },
+  { text: 'Estatus', href: '/estatus', icon: ZoomInMapIcon },
+  { text: 'Tractocamiones', href: '/tractocamiones', icon: DirectionsBusFilledIcon },
+  { text: 'Remolques', href: '/remolques', icon: RvHookupIcon },
+  { text: 'Dollies', href: '/dollies', icon: CommitIcon},
+  { text: 'Operadores', href: '/operadores', icon: PeopleAltIcon },
+  { text: 'Rutas', href: '/rutas', icon: AirlineStopsIcon },
 ];
 
 const PLACEHOLDER_LINKS = [

@@ -9,7 +9,7 @@ const { Pool } = require('pg');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
-const PORT = process.env.PORT || 3008;
+const PORT = process.env.PORT || 3011;
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -64,7 +64,7 @@ async function insertDataIntoDatabase(newData) {
       `;
     
       const values = [
-        statusUpdateID, item.assetId, item.vehicleNumber, item.numberPlates, item.vehicleBrand,
+        transactionID, item.assetId, item.vehicleNumber, item.numberPlates, item.vehicleBrand,
         item.vehicleModel, item.vehicleYear, item.vin, item.engineModel,
         item.groupName, JSON.stringify(item.groups), item.serialNumber,
         JSON.stringify(item.position)
@@ -90,7 +90,7 @@ async function insertDataIntoDatabase(newData) {
   }
 }
 // Ejecutar fetchDataFromAPI y insertDataIntoDatabase cada 2 minutos
-cron.schedule('*/2 * * * *', async () => {
+cron.schedule('*/60 * * * *', async () => {
   try {
     console.log('Fetching and logging data...');
     const newData = await fetchDataFromAPI();
@@ -101,8 +101,75 @@ cron.schedule('*/2 * * * *', async () => {
   }
 });
 
+app.use(cors());
+
 app.get('/', (req, res) => {
   res.render('index', { title: 'FullTrailer Server' });
+});
+
+
+app.get('/api/getMotumStatus', async (req, res) => {
+  console.log("Query Barrido");
+  try {
+    // Get the latest transactionID and querydate from the statusupdates table
+    const latestTransactionQuery = 'SELECT transactionid, querydate FROM suign.fulltrailer.statusupdates ORDER BY id DESC LIMIT 1';
+    const latestTransactionResult = await pool.query(latestTransactionQuery);
+    const latestTransaction = latestTransactionResult.rows[0];
+    
+    // Fetch related data from the fulltrailerstatus table using the latest transactionID
+    const relatedDataQuery = 'SELECT * FROM suign.fulltrailer.fulltrailerstatus WHERE transactionID = $1';
+    const relatedDataResult = await pool.query(relatedDataQuery, [latestTransaction.transactionid]);
+    
+    // Create an object to hold both pieces of data, including querydate
+    const responseData = {
+      latestTransaction: {
+        transactionid: latestTransaction.transactionid,
+        querydate: latestTransaction.querydate,
+      },
+      relatedData: relatedDataResult.rows
+    };
+    
+    // Return the combined data as a JSON response
+    res.json(responseData);
+  } catch (error) {
+    console.error('Error al obtener datos de la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de la base de datos' });
+  }
+});
+
+app.get('/api/getPreviousMotumStatus', async (req, res) => {
+  try {
+    // Get the desired time range and transactionID from query parameters
+    const { startTime, endTime, transactionID } = req.query;
+    // Fetch the data based on the provided time range and transactionID
+    const result = await pool.query(
+      'SELECT * FROM suign.fulltrailer.fulltrailerstatus WHERE transactionID = $1 AND timestamp >= $2 AND timestamp <= $3',
+      [transactionID, startTime, endTime]
+    );
+    // Devuelve los datos como respuesta JSON
+    res.json(result.rows);
+    console.log("Data Asked ", result);
+  } catch (error) {
+    console.error('Error al obtener datos de la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de la base de datos' });
+  }
+});
+
+app.get('/api/getTractos', async (req, res) => {
+  console.log("Query Tractos");
+  try {
+    // Replace 'your_query_here' with the SQL query to retrieve tractocamiones data
+    const tractosQuery = 'SELECT * FROM suign.fulltrailer.tractocamiones';
+  
+    // Execute the query to fetch tractocamiones data
+    const tractosResult = await pool.query(tractosQuery);
+    
+    // Return the fetched tractocamiones data as a JSON response
+    res.json(tractosResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de la base de datos' });
+  }
 });
 
 app.listen(PORT, () => {

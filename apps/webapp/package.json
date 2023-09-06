@@ -12,12 +12,14 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "next": "13.x",
     "react": "18.x",
-    "react-dom": "18.x"
+    "react-dom": "18.x",
+    "redux": "^4.2.1"
   }
 }

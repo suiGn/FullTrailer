@@ -7,9 +7,6 @@ const path = require('path');
 const cron = require('node-cron');
 const { Pool } = require('pg');
 const { v4: uuidv4 } = require('uuid');
-function generateuuID() {
-  return uuidv4();
-}
 
 const app = express();
 const PORT = process.env.PORT || 3008;
@@ -50,7 +47,9 @@ async function insertDataIntoDatabase(newData) {
     const statusInsertQuery = `
       INSERT INTO suign.fulltrailer.statusupdates (transactionID, querydate) VALUES ($1, $2) RETURNING id;
     `;
-    const statusInsertValues = [generateuuID(), queryDate];
+    const transactionID = uuidv4(); 
+    console.log("transactionId ", transactionID);
+    const statusInsertValues = [transactionID, queryDate];
     const statusInsertResult = await client.query(statusInsertQuery, statusInsertValues);
     const statusUpdateID = statusInsertResult.rows[0].id;
 

@@ -18,26 +18,27 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
-import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
+import ThemeRegistry from '@/app/components/ThemeRegistry/ThemeRegistry';
+import { Alert } from '@mui/material';
 
 export const metadata = {
-  title: 'Next.js App Router + Material UI v5',
-  description: 'Next.js App Router + Material UI v5',
+  title: 'FullTrailer',
+  description: 'Empowering Logistics',
 };
 
 const DRAWER_WIDTH = 240;
 
 const LINKS = [
-  { text: 'Home', href: '/', icon: HomeIcon },
-  { text: 'Starred', href: '/starred', icon: StarIcon },
-  { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
+  { text: 'Barrido', href: '/', icon: SupportIcon },
 ];
 
 const PLACEHOLDER_LINKS = [
-  { text: 'Settings', icon: SettingsIcon },
-  { text: 'Support', icon: SupportIcon },
+  //{ text: 'Settings', icon: SettingsIcon },
+  //{ text: 'Support', icon: SupportIcon },
   { text: 'Logout', icon: LogoutIcon },
 ];
+
+const correctPassword = 'password'; 
 
 export default function RootLayout({ children }) {
   return (
@@ -48,7 +49,7 @@ export default function RootLayout({ children }) {
             <Toolbar sx={{ backgroundColor: 'background.paper' }}>
               <DashboardIcon sx={{ color: '#444', mr: 2, transform: 'translateY(-2px)' }} />
               <Typography variant="h6" noWrap component="div" color="black">
-                Next.js App Router
+                Sitema FullTrailer
               </Typography>
             </Toolbar>
           </AppBar>

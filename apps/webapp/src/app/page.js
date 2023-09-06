@@ -7,43 +7,41 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import MediaCard from '@/components/MediaCard';
+import MediaCard from '@/app/components/MediaCard';
+import CollapsibleTable from '@/app/components/CollapsibleTable';
+import { Button } from '@mui/material';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
-export default function HomePage() {
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+export const metadata = {
+  title: 'FullTrailer',
+}
+
+export default async function HomePage() {
+  const res = await fetch('https://telemetry-api-tczr3qabsq-uc.a.run.app/clients/1625/users/56067/assets/current-position?key=AIzaSyDoc5HcbJHbj5fJSw1bSq41LqYQ0hb9E_A');
+  const data = await res.json();
   return (
     <Box sx={{ display: 'flex' }}>
-      <div>
-        <Alert severity="info" sx={{ mt: 2, mb: 5 }}>
-          <AlertTitle>Hello 👋</AlertTitle>
-          This app uses the Next.js App Router and Material UI v5.
-        </Alert>
-        <Grid container rowSpacing={3} columnSpacing={3}>
-          <Grid xs={6}>
-            <MediaCard
-              heading="CMYK"
-              text="The CMYK color model (also known as process color, or four color) is a subtractive color model, based on the CMY color model, used in color printing, and is also used to describe the printing process itself."
-            />
-          </Grid>
-          <Grid xs={6}>
-            <MediaCard
-              heading="HSL and HSV"
-              text="HSL (for hue, saturation, lightness) and HSV (for hue, saturation, value; also known as HSB, for hue, saturation, brightness) are alternative representations of the RGB color model, designed in the 1970s by computer graphics researchers."
-            />
-          </Grid>
-          <Grid xs={6}>
-            <MediaCard
-              heading="RGB"
-              text="An RGB color space is any additive color space based on the RGB color model. RGB color spaces are commonly found describing the input signal to display devices such as television screens and computer monitors."
-            />
-          </Grid>
-          <Grid xs={6}>
-            <MediaCard
-              heading="CIELAB"
-              text="The CIELAB color space, also referred to as L*a*b*, was intended as a perceptually uniform space, where a given numerical change corresponds to a similar perceived change in color."
-            />
-          </Grid>
-        </Grid>
+  <div>
+  <ButtonGroup variant="outlined" aria-label="outlined button group">
+  <Button>Generar Barrido</Button>
+  <Button>Anterior</Button>
+  <Button>Siguiente</Button>
+  </ButtonGroup>
+  <CollapsibleTable />
       </div>
+
       <Drawer
         sx={{
           width: 320,
@@ -62,11 +60,12 @@ export default function HomePage() {
         <List sx={{ px: 2 }}>
           <ListItem disablePadding>
             <Typography variant="overline" sx={{ fontWeight: 500 }}>
-              On this page
+              Menu
             </Typography>
           </ListItem>
         </List>
       </Drawer>
+      
     </Box>
   );
 }

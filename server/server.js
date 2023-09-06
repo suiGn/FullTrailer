@@ -2,9 +2,14 @@ const express = require('express');
 require('dotenv').config();
 const API_KEY = process.env.TELEMETRY_API_KEY;
 const axios = require('axios');
+const cors = require('cors')
 const path = require('path');
 const cron = require('node-cron');
 const { Pool } = require('pg');
+const { v4: uuidv4 } = require('uuid');
+function generateuuID() {
+  return uuidv4();
+}
 
 const app = express();
 const PORT = process.env.PORT || 3008;
@@ -25,7 +30,7 @@ async function fetchDataFromAPI() {
   try {
     const response = await axios.get(API_KEY);
     const newData = response.data.data;
-    console.log('Fetch succeed');
+    console.log('Fetch succeed'); 
     return newData;
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -38,17 +43,29 @@ async function insertDataIntoDatabase(newData) {
   await client.query('BEGIN');
 
   try {
+    // Obtener la fecha de la transacción actual
+    const queryDate = new Date();
+
+    // Insertar en la tabla statusupdates primero, incluyendo la fecha
+    const statusInsertQuery = `
+      INSERT INTO suign.fulltrailer.statusupdates (transactionID, querydate) VALUES ($1, $2) RETURNING id;
+    `;
+    const statusInsertValues = [generateuuID(), queryDate];
+    const statusInsertResult = await client.query(statusInsertQuery, statusInsertValues);
+    const statusUpdateID = statusInsertResult.rows[0].id;
+
+    // Insertar en la tabla fulltrailerstatus usando el ID de statusupdates
     for (const item of newData) {
       const query = `
         INSERT INTO suign.fulltrailer.fulltrailerstatus (
-          assetId, vehicleNumber, numberPlates, vehicleBrand, vehicleModel,
+          transactionID, assetId, vehicleNumber, numberPlates, vehicleBrand, vehicleModel,
           vehicleYear, vin, engineModel, groupName, groups, serialNumber, position
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
       `;
     
       const values = [
-        item.assetId, item.vehicleNumber, item.numberPlates, item.vehicleBrand,
+        statusUpdateID, item.assetId, item.vehicleNumber, item.numberPlates, item.vehicleBrand,
         item.vehicleModel, item.vehicleYear, item.vin, item.engineModel,
         item.groupName, JSON.stringify(item.groups), item.serialNumber,
         JSON.stringify(item.position)
@@ -73,7 +90,6 @@ async function insertDataIntoDatabase(newData) {
     client.release();
   }
 }
-
 // Ejecutar fetchDataFromAPI y insertDataIntoDatabase cada 2 minutos
 cron.schedule('*/2 * * * *', async () => {
   try {

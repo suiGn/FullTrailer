@@ -23,6 +23,9 @@ import DirectionsBusFilledIcon from '@mui/icons-material/DirectionsBusFilled';
 import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import BuildIcon from '@mui/icons-material/Build';
 import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import ThemeRegistry from '@/app/components/ThemeRegistry/ThemeRegistry';
 import '@fontsource/roboto/300.css';
@@ -40,12 +43,15 @@ const DRAWER_WIDTH = 240;
 
 const LINKS = [
   { text: 'Home', href: '/', icon: HomeIcon },
-  { text: 'Estatus', href: '/estatus', icon: ZoomInMapIcon },
+  { text: 'Estatus Motum', href: '/estatus', icon: ZoomInMapIcon },
   { text: 'Tractocamiones', href: '/tractocamiones', icon: DirectionsBusFilledIcon },
   { text: 'Remolques', href: '/remolques', icon: RvHookupIcon },
   { text: 'Dollies', href: '/dollies', icon: CommitIcon},
+  { text: 'Configuraciones', href: '/configuraciones', icon: LocalShippingIcon},
   { text: 'Operadores', href: '/operadores', icon: PeopleAltIcon },
   { text: 'Rutas', href: '/rutas', icon: AirlineStopsIcon },
+  { text: 'Taller', href: '/taller', icon: BuildIcon },
+  { text: 'Mecánicos', href: '/mecanicos', icon: EngineeringIcon },
 ];
 
 const PLACEHOLDER_LINKS = [

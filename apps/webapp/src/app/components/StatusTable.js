@@ -51,8 +51,8 @@ export default function StatusTable({ data }) {
       <h1>Estatus Motum:</h1>
       <pre><b>Fecha del Status:</b>{JSON.stringify(latestTransaction.querydate, null, 2)}</pre>
       <pre><b>ID de la Consulta:</b>{JSON.stringify(latestTransaction.transactionid, null, 2)}</pre>
-      <TableContainer component={Paper} sx={{ width: '100%' }}>
-        <Table aria-label="collapsible table">
+      <TableContainer component={Paper} sx={{ maxHeight: '90vh' }}>
+      <Table sx={{ minWidth: '610'}} stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell />

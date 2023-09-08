@@ -11,7 +11,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import MediaCard from '@/app/components/MediaCard';
 import { Button } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import BarridoTable from '@/app/components/StatusTable';
+import RemolquesTable from '@/app/components/RemolquesTable';
 
 export const metadata = {
   title: 'FullTrailer',
@@ -22,7 +22,7 @@ export default async function HomePage() {
     return (
     <Box sx={{ display: 'flex' }}>
   <div>
-
+<RemolquesTable />
       </div>
 
       <Drawer

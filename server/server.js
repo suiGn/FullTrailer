@@ -172,6 +172,126 @@ app.get('/api/getTractos', async (req, res) => {
   }
 });
 
+app.get('/api/getRemolques', async (req, res) => {
+  console.log("Query Remolques");
+  try {
+    // Replace 'your_query_here' with the SQL query to retrieve remolques data
+    const remolquesQuery = 'SELECT * FROM suign.fulltrailer.remolques';
+    // Execute the query to fetch remolques data
+    const remolquesResult = await pool.query(remolquesQuery);
+    // Return the fetched remolques data as a JSON response
+    res.json(remolquesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de la base de datos' });
+  }
+});
+
+app.get('/api/getDollies', async (req, res) => {
+  console.log("Query Dollies");
+  try {
+    // Replace 'your_query_here' with the SQL query to retrieve dollies data
+    const dolliesQuery = 'SELECT * FROM suign.fulltrailer.dollies';
+    // Execute the query to fetch dollies data
+    const dolliesResult = await pool.query(dolliesQuery);
+    // Return the fetched dollies data as a JSON response
+    res.json(dolliesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de la base de datos' });
+  }
+});
+
+app.get('/api/getConfiguraciones', async (req, res) => {
+  console.log("Query Configuraciones");
+  try {
+    // Reemplaza 'tu_consulta_aqui' con la consulta SQL para recuperar datos de configuraciones
+    const configuracionesQuery = 'SELECT * FROM suign.fulltrailer.configuraciones';
+    // Ejecuta la consulta para obtener datos de configuraciones
+    const configuracionesResult = await pool.query(configuracionesQuery);
+    // Devuelve los datos de configuraciones recuperados como respuesta JSON
+    res.json(configuracionesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de configuraciones desde la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de configuraciones desde la base de datos' });
+  }
+});
+
+app.get('/api/getTractocamionesDisponibles', async (req, res) => {
+  console.log("Query Tractocamiones Disponibles");
+  try {
+    // Reemplaza 'tu_consulta_aqui' con la consulta SQL para recuperar tractocamiones disponibles
+    const tractocamionesQuery = 'SELECT * FROM suign.fulltrailer.tractocamiones WHERE "idconfiguracion" IS NULL';
+    // Ejecuta la consulta para obtener tractocamiones disponibles
+    const tractocamionesResult = await pool.query(tractocamionesQuery);
+    // Devuelve los datos de tractocamiones disponibles como respuesta JSON
+    res.json(tractocamionesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de tractocamiones disponibles desde la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de tractocamiones disponibles desde la base de datos' });
+  }
+});
+
+app.get('/api/getRemolquesDisponibles', async (req, res) => {
+  console.log("Query Remolques Disponibles");
+  try {
+    // Reemplaza 'tu_consulta_aqui' con la consulta SQL para recuperar remolques disponibles
+    const remolquesQuery = 'SELECT * FROM suign.fulltrailer.remolques WHERE "idconfiguracion" IS NULL';
+    // Ejecuta la consulta para obtener remolques disponibles
+    const remolquesResult = await pool.query(remolquesQuery);
+    // Devuelve los datos de remolques disponibles como respuesta JSON
+    res.json(remolquesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de remolques disponibles desde la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de remolques disponibles desde la base de datos' });
+  }
+});
+
+app.get('/api/getDolliesDisponibles', async (req, res) => {
+  console.log("Query Dollies Disponibles");
+  try {
+    // Reemplaza 'tu_consulta_aqui' con la consulta SQL para recuperar dollies disponibles
+    const dolliesQuery = 'SELECT * FROM suign.fulltrailer.dollies WHERE "idconfiguracion" IS NULL';
+    // Ejecuta la consulta para obtener dollies disponibles
+    const dolliesResult = await pool.query(dolliesQuery);
+    // Devuelve los datos de dollies disponibles como respuesta JSON
+    res.json(dolliesResult.rows);
+  } catch (error) {
+    console.error('Error al obtener datos de dollies disponibles desde la base de datos:', error);
+    res.status(500).json({ error: 'Error al obtener datos de dollies disponibles desde la base de datos' });
+  }
+});
+
+app.post('/api/insertConfiguracion', async (req, res) => {
+  try {
+    const configuracion = req.body; // Obtiene la configuración del cuerpo de la solicitud POST
+    // Inserta la configuración en tu base de datos
+    const query = `
+      INSERT INTO fulltrailer.configuraciones (
+        tipo,
+        estado,
+        remolquedelantero,
+        remolquetrasero,
+        dolly,
+        tractocamion
+      ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const values = [
+      configuracion.Modalidad,
+      'Activa', // Puedes establecer el estado como 'Activa' al crear la configuración
+      configuracion.RemolqueDelantero,
+      configuracion.RemolqueTrasero,
+      configuracion.Dolly,
+      configuracion.Tractocamion
+    ];
+    const result = await pool.query(query, values); // Ejecuta la inserción
+    // Devuelve la configuración insertada como respuesta JSON
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error al insertar la configuración:', error);
+    res.status(500).json({ error: 'Hubo un error al insertar la configuración' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

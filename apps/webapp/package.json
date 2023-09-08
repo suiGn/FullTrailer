@@ -15,6 +15,7 @@
     "@fontsource/roboto": "^5.0.8",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/x-data-grid": "^6.12.1",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "next": "13.x",

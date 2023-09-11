@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/gruas/page": "app/gruas/page.js",
-  "/tractocamiones/page": "app/tractocamiones/page.js",
-  "/configuraciones/page": "app/configuraciones/page.js",
-  "/estatus/page": "app/estatus/page.js"
-}

@@ -1,0 +1,123 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/72-29faf61b5caf925d.js",
+      "static/chunks/app/page-1f23a8bf721c2f0c.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/css/9b96d515f3ff9d8b.css",
+      "static/chunks/app/layout-1a24bb7b6eb03503.js"
+    ],
+    "/dollies/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/dollies/page-7fc0b99179890d98.js"
+    ],
+    "/operadores/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/operadores/page-0512f057423fc9e1.js"
+    ],
+    "/remolques/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/remolques/page-345ff8c08858c787.js"
+    ],
+    "/estatus/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/72-29faf61b5caf925d.js",
+      "static/chunks/app/estatus/page-6f4619721112e963.js"
+    ],
+    "/configuraciones/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/configuraciones/page-7eaa7d954d151dc0.js"
+    ],
+    "/taller/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/taller/page-bebfdeab547d422a.js"
+    ],
+    "/gruas/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/gruas/page-324ee8fe410f5ccb.js"
+    ],
+    "/vehiculos/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/vehiculos/page-a6d472605a1a3140.js"
+    ],
+    "/tractocamiones/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/915-e869c9bc17d235b1.js",
+      "static/chunks/app/tractocamiones/page-20285d0f117ab5d2.js"
+    ],
+    "/rutas/page": [
+      "static/chunks/webpack-da77c62fc80c1824.js",
+      "static/chunks/fd9d1056-de7e72eab00050e8.js",
+      "static/chunks/596-6f8641a99a5bca4c.js",
+      "static/chunks/main-app-5ba64143eb5a7d3d.js",
+      "static/chunks/124-a525c66dfbab6f59.js",
+      "static/chunks/558-113c22698f4001b5.js",
+      "static/chunks/72-29faf61b5caf925d.js",
+      "static/chunks/app/rutas/page-85ebe9507853aa10.js"
+    ]
+  }
+}

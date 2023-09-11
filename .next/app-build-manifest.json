@@ -6,6 +6,21 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/estatus/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/estatus/page.js"
+    ],
+    "/tractocamiones/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/tractocamiones/page.js"
+    ],
+    "/remolques/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/remolques/page.js"
+    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

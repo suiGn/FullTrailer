@@ -1,14 +1,4 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
-  "/dollies/page": "app/dollies/page.js",
-  "/operadores/page": "app/operadores/page.js",
-  "/remolques/page": "app/remolques/page.js",
-  "/estatus/page": "app/estatus/page.js",
-  "/configuraciones/page": "app/configuraciones/page.js",
-  "/taller/page": "app/taller/page.js",
-  "/gruas/page": "app/gruas/page.js",
-  "/vehiculos/page": "app/vehiculos/page.js",
-  "/tractocamiones/page": "app/tractocamiones/page.js",
-  "/rutas/page": "app/rutas/page.js"
+  "/page": "app/page.js"
 }

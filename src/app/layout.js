@@ -38,7 +38,6 @@ import { Alert } from '@mui/material';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
 export const metadata = {
   title: 'FullTrailer',
   description: 'Empowering Logistics',
@@ -134,7 +133,10 @@ export default function RootLayout({ children }) {
               p: 3,
             }}
           >
+              {/* Use ProtectedRoute to wrap the content */}
+          
             {children}
+       
           </Box>
         </ThemeRegistry>
       </body>

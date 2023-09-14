@@ -20,7 +20,10 @@
     "dotenv": "^16.3.1",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "navi": "^0.15.0",
     "next": "13.x",
+    "next-auth": "^4.23.1",
+    "passport-local": "^1.0.0",
     "react": "18.x",
     "react-dom": "18.x",
     "redux": "^4.2.1"

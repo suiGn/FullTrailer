@@ -63,13 +63,12 @@ apiUrl = 'http://localhost:3011/';
       if (response.status === 200) {
         console.log('Login successful');
         // Realizar redireccionamiento o acciones adicionales aquí
-      } else {
-        const errorMessage = response.data.message; // Obtén el mensaje de error personalizado
-        console.log('Login failed:', errorMessage);
+      } else { 
+        console.log('Login failed.');
         setMessage(errorMessage); // Muestra el mensaje de error en tu componente
       }
     } catch (error) {
-      console.error('Error during login:', error);
+      console.error('Error during login:');
       setMessage('An error occurred during login. Please try again later.');
     }
   };

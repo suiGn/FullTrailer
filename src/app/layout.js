@@ -13,15 +13,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import HomeIcon from '@mui/icons-material/Home';
-import StarIcon from '@mui/icons-material/Star';
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import SettingsIcon from '@mui/icons-material/Settings';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import RvHookupIcon from '@mui/icons-material/RvHookup';
 import CommitIcon from '@mui/icons-material/Commit';
 import DirectionsBusFilledIcon from '@mui/icons-material/DirectionsBusFilled';
-import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import EngineeringIcon from '@mui/icons-material/Engineering';
@@ -30,11 +26,13 @@ import BuildIcon from '@mui/icons-material/Build';
 import ZoomInMapIcon from '@mui/icons-material/ZoomInMap';
 import WebhookIcon from '@mui/icons-material/Webhook';
 import ThemeRegistry from '@/app/components/ThemeRegistry/ThemeRegistry';
+import SettingsIcon from '@mui/icons-material/Settings';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Alert } from '@mui/material';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -61,12 +59,10 @@ const LINKS = [
 ];
 
 const PLACEHOLDER_LINKS = [
-  //{ text: 'Settings', icon: SettingsIcon },
+  { text: 'Settings', href: '/settings', icon: SettingsIcon },
   //{ text: 'Support', icon: SupportIcon },
   { text: 'Logout', icon: LogoutIcon },
 ];
-
-const correctPassword = 'password'; 
 
 export default function RootLayout({ children }) {
   return (
@@ -134,9 +130,7 @@ export default function RootLayout({ children }) {
             }}
           >
               {/* Use ProtectedRoute to wrap the content */}
-          
             {children}
-       
           </Box>
         </ThemeRegistry>
       </body>

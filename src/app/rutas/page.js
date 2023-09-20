@@ -22,33 +22,8 @@ export default async function RutasPage() {
     return (
     <Box sx={{ display: 'flex' }}>
   <div>
-
+  <h1>Rutas:</h1>
       </div>
-
-      <Drawer
-        sx={{
-          width: 320,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: 320,
-            boxSizing: 'border-box',
-            top: ['48px', '56px', '64px'],
-            height: 'auto',
-            bottom: 0,
-          },
-        }}
-        variant="permanent"
-        anchor="right"
-      >
-        <List sx={{ px: 2 }}>
-          <ListItem disablePadding>
-            <Typography variant="overline" sx={{ fontWeight: 500 }}>
-              Menu
-            </Typography>
-          </ListItem>
-        </List>
-      </Drawer>
-      
     </Box>
   );
 }

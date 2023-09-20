@@ -50,13 +50,13 @@ export default function SignIn() {
       // Enviar una solicitud POST al endpoint de restablecimiento de contraseña
       let apiUrl;
       if (process.env.NODE_ENV === 'production') {
-        // Si está en producción (Heroku), usa la URL de producción.
+        // Si está en prodaucción (Heroku), usa la URL de producción.
         apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/api/';
       } else {
         // Si está en desarrollo (local), usa la URL local.
-        apiUrl = 'http://localhost:3011/api/';
+        apiUrl = 'http://localhost:3011/';
       }
-      const response = await fetch(apiUrl + 'forgot-password', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

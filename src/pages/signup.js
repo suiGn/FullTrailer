@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+import { useRouter } from 'next/router';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -8,10 +8,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image'
 
@@ -49,6 +47,8 @@ function SignUp() {
       const [message, setMessage] = React.useState('');
       const [emailValid, setEmailValid] = React.useState(true); // Estado para verificar el formato del correo
       const [passwordValid, setPasswordValid] = React.useState(true); 
+      const router = useRouter();
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,22 +60,13 @@ function SignUp() {
       setMessage('La contraseña debe tener al menos 8 caracteres');
       return;
     }
-
     const aceptoTerminosCheckbox = document.getElementById('acepto-terminos'); // Obtén el elemento del checkbox
     if (!aceptoTerminosCheckbox.checked) {
       setMessage('Debes aceptar los términos y condiciones para registrarte');
       return;
     }
     try {
-let apiUrl;
-if (process.env.NODE_ENV === 'production') {
-// Si está en producción (Heroku), usa la URL de producción.
-apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/';
-} else {
-// Si está en desarrollo (local), usa la URL local.
-apiUrl = 'http://localhost:3011/';
-}
-      const response = await fetch(apiUrl + 'api/signup', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,6 +77,7 @@ apiUrl = 'http://localhost:3011/';
       if (response.ok) {
         // Registration successful
         setMessage('Usuario registrado exitosamente');
+        router.push('/'); // Redirige al usuario a la página principal
       } else {
         // Registration failed
         const data = await response.json();
@@ -144,11 +136,16 @@ apiUrl = 'http://localhost:3011/';
       height={144}
       style={{ display: 'block', margin: '0 auto' }} // Center the image horizontally
     />
-          
           <Typography component="h1" variant="h5">
             Registra Tu Empresa.
           </Typography>
-          <br></br>
+           {/* Mostrar el mensaje */}
+           {message && (
+              <Typography variant="body2" color="text.secondary" align="center">
+                {message}
+              </Typography>
+            )}
+           <br></br>
           <form noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -251,12 +248,6 @@ apiUrl = 'http://localhost:3011/';
                 </Link>
               </Grid>
             </Grid>
-            {/* Mostrar el mensaje */}
-            {message && (
-              <Typography variant="body2" color="text.secondary" align="center">
-                {message}
-              </Typography>
-            )}
           </form>
         </Box>
       </Container>

@@ -1,7 +1,8 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-
+import useAuth from '@/utils/auth';
+//
 const columns = [
   { field: 'clave', headerName: 'Clave', width: 130 },
   { field: 'marca', headerName: 'Marca', width: 130 },
@@ -14,18 +15,13 @@ const columns = [
 ];
 
 async function getDollies() {
-  let apiUrl;
-if (process.env.NODE_ENV === 'production') {
-  // Si está en producción (Heroku), usa la URL de producción.
-  apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/api/';
-} else {
-  // Si está en desarrollo (local), usa la URL local.
-  apiUrl = 'http://localhost:3011/api/';
-}
+  const token = localStorage.getItem('jwtToken');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getDollies`, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  });
 
-const res = await fetch(apiUrl + 'getDollies');
-
-  
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -44,6 +40,7 @@ const res = await fetch(apiUrl + 'getDollies');
 export default function DolliesTable() {
 // Initialize rows state with an empty array
 const [rows, setRows] = useState([]);
+useAuth(); // This will run the authentication check
   useEffect(() => {
     getDollies()
       .then(data => {

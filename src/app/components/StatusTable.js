@@ -18,19 +18,9 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { Button } from '@mui/material';
 
-let apiUrl;
-
-if (process.env.NODE_ENV === 'production') {
-  // Si está en producción (Heroku), usa la URL de producción.
-  apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/api/';
-} else {
-  // Si está en desarrollo (local), usa la URL local.
-  apiUrl = 'http://localhost:3011/api/';
-}
-
-
 async function getStatus() {
-  const res = await fetch(apiUrl + 'getMotumStatus');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getRMotumStatus`);  
+
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }

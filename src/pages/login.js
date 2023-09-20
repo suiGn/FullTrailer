@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -42,42 +43,42 @@ export default function SignInSide() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const randomNumber = getRandomNumber(1, 10);
+    const backgroundImageUrl = `/backgrounds/${randomNumber}.jpg`;
+    setBackgroundImage(backgroundImageUrl);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    
     try {
-let apiUrl;
-if (process.env.NODE_ENV === 'production') {
-// Si está en producción (Heroku), usa la URL de producción.
-apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/';
-} else {
-// Si está en desarrollo (local), usa la URL local.
-apiUrl = 'http://localhost:3011/';
-}
-      const response = await axios.post(apiUrl + 'api/login', {
-        username: email, // Envía el email como username
-        password: password, // Envía la contraseña
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}login`, {
+        username: email,
+        password: password,
       });
   
       if (response.status === 200) {
-        console.log('Login successful');
-        // Realizar redireccionamiento o acciones adicionales aquí
-      } else { 
+        const { token } = response.data;
+        localStorage.setItem('jwtToken', token);
+        document.cookie = `token=${token}; max-age=10800`;
+        router.push('/'); //  Redirige al usuario a la app
+      } else {
         console.log('Login failed.');
-        setMessage(errorMessage); // Muestra el mensaje de error en tu componente
+        setMessage('Login Failed. Please try again.');
       }
     } catch (error) {
-      console.error('Error during login:');
-      setMessage('An error occurred during login. Please try again later.');
+      console.error('Error during login:', error);
+      setMessage('An error occurred during login. Please try again.');
     }
   };
+
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
- 
-  const randomNumber = getRandomNumber(1, 10);
-  const backgroundImageUrl = `/backgrounds/${randomNumber}.jpg`;
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -89,7 +90,7 @@ apiUrl = 'http://localhost:3011/';
   sm={4}
   md={7}
   sx={{
-    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',

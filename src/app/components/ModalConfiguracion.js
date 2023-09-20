@@ -12,15 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-let apiUrl;
-
-if (process.env.NODE_ENV === 'production') {
-  // Si está en producción (Heroku), usa la URL de producción.
-  apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/api/';
-} else {
-  // Si está en desarrollo (local), usa la URL local.
-  apiUrl = 'http://localhost:3011/api/';
-}
 
 const style = {
   position: 'absolute',
@@ -55,17 +46,14 @@ export default function BasicModal() {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Evita que se envíe el formulario de manera predeterminada
-  
     const formData = new FormData(event.target);
     const data = {};
-  
     // Convertir los datos del formulario en un objeto
     formData.forEach((value, key) => {
       data[key] = value;
     });
   
     let configuracion;
-  
     if (modalidad === 'sencillo') {
       configuracion = {
         Modalidad: modalidad,
@@ -90,10 +78,12 @@ export default function BasicModal() {
       if (window.confirm(`Confirmar configuración:\n\n${JSON.stringify(configuracion, null, 2)}\n\n¿Deseas continuar?`)) {
         // Realizar la solicitud POST aquí si el usuario hace clic en "Aceptar"
         try {
-          const response = await fetch(apiUrl  + 'insertConfiguracion', {
+          const token = localStorage.getItem('jwtToken');
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/insertConfiguracion`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify(configuracion),
           });
@@ -112,11 +102,15 @@ export default function BasicModal() {
     }
   };
 
-
   // Función para obtener tractocamiones desde la API
   const fetchTractocamiones = async () => {
     try {
-      const res = await fetch(apiUrl + 'getTractocamionesDisponibles');
+      const token = localStorage.getItem('jwtToken');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getTractocamionesDisponibles`, {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -130,7 +124,12 @@ export default function BasicModal() {
   // Función para obtener remolques desde la API
   const fetchRemolques = async () => {
     try {
-      const res = await fetch(apiUrl + 'getRemolquesDisponibles');
+      const token = localStorage.getItem('jwtToken');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getRemolquesDisponibles`, {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -140,11 +139,16 @@ export default function BasicModal() {
       console.error('Error fetching remolques data:', error);
     }
   };
-
+    
   // Función para obtener dollies desde la API
   const fetchDollies = async () => {
     try {
-      const res = await fetch(apiUrl + 'getDolliesDisponibles');
+      const token = localStorage.getItem('jwtToken');
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getDolliesDisponibles`, {
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }

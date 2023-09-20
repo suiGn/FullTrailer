@@ -1,17 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-
-let apiUrl;
-
-if (process.env.NODE_ENV === 'production') {
-  // Si está en producción (Heroku), usa la URL de producción.
-  apiUrl = 'https://fulltrailerserver-4d6224ea988e.herokuapp.com/api/';
-} else {
-  // Si está en desarrollo (local), usa la URL local.
-  apiUrl = 'http://localhost:3011/api/';
-}
-
+import useAuth from '@/utils/auth';
 
 const columns = [
   { field: 'clave', headerName: 'Clave', width: 130 },
@@ -25,13 +15,18 @@ const columns = [
 ];
 
 async function getRemolques() {
-  const res = await fetch(apiUrl + 'getRemolques');
+  const token = localStorage.getItem('jwtToken');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getRemolques`, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  });
+
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
 
   const responseData = await res.json();
-
   // Add unique IDs to your rows (assuming 'clave' can be used as an ID)
   const rowsWithIds = responseData.map((row, index) => ({
     ...row,
@@ -41,9 +36,12 @@ async function getRemolques() {
   return rowsWithIds;
 }
 
+
+
+
 export default function RemolquesTable() {
   const [rows, setRows] = useState([]);
-  
+  useAuth(); // This will run the authentication check
   useEffect(() => {
     getRemolques()
       .then(data => {

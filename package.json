@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "@reduxjs/toolkit": "^1.9.5"
-  }
+  },
+  "author": "suiGn",
+  "license": "MIT",
+  "repoType": "App"
 }

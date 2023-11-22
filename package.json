@@ -36,6 +36,12 @@
   "devDependencies": {
     "@reduxjs/toolkit": "^1.9.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suiGn/fulltrailer.git"
+  },
+  "homepage": "https://fulltrailer.com.mx",
+  "docs": "https://suiGn.github.io/fulltrailer",
   "author": "suiGn",
   "license": "MIT",
   "repoType": "App"

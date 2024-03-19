@@ -1,0 +1,1 @@
+console.log('FullTrailer/index.js');
